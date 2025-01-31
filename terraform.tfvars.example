@@ -1,0 +1,47 @@
+pm_api_url         = "https://pve01:8006/api2/json"
+pm_api_token_id    = "root@pam!root"
+pm_api_token_secret = "your_pve_token"
+
+k3s_token = "your_k3s_token"
+
+vm_nodes = {
+  "pub-k3s-01" = "pve01"
+  "pub-k3s-02" = "pve02"
+  "pub-k3s-03" = "pve03"
+}
+
+vm_config = {
+  "pub-k3s-01" = {
+    vmid      = 4101
+    cores     = 8
+    memory    = 8192
+    disk_size = "60G"
+    network   = "vmbr0"
+    static_ip = "10.0.20.101"
+    gateway   = "10.0.20.1"
+    dns       = "10.0.20.1"
+    net_tag   = 20
+  }
+  "pub-k3s-02" = {
+    vmid      = 4102
+    cores     = 8
+    memory    = 8192
+    disk_size = "60G"
+    network   = "vmbr0"
+    static_ip = "10.0.20.102"
+    gateway   = "10.0.20.1"
+    dns       = "10.0.20.1"
+    net_tag   = 20
+  }
+  "pub-k3s-03" = {
+    vmid      = 4103
+    cores     = 8
+    memory    = 8192
+    disk_size = "60G"
+    network   = "vmbr0"
+    static_ip = "10.0.20.103"
+    gateway   = "10.0.20.1"
+    dns       = "10.0.20.1"
+    net_tag   = 20
+  }
+}
