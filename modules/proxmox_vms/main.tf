@@ -53,9 +53,9 @@ resource "proxmox_vm_qemu" "k3s_cluster" {
 
   network {
     id = 0
-    model  = "virtio"
-    bridge = each.value.network
-    tag = each.value.net_tag
+    model   = "virtio"
+    bridge  = each.value.network
+    tag     = each.value.net_tag
   }
 
   serial {
@@ -66,7 +66,9 @@ resource "proxmox_vm_qemu" "k3s_cluster" {
   ipconfig0  = "ip=${each.value.static_ip}/24,gw=${each.value.gateway}"
   nameserver = each.value.dns
 
-  sshkeys = file("~/.ssh/id_rsa.pub")
+  ciuser     = var.vm_user
+  cipassword = var.vm_password
+  sshkeys    = file(var.ssh_pub_key)
 
   tags = "k3s-cluster"
 }

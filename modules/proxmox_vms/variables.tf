@@ -19,6 +19,21 @@ variable "vm_nodes" {
   type        = map(string)
 }
 
+variable "vm_user" {
+  type        = string
+  description = "Default user for the VMs"
+}
+
+variable "vm_password" {
+  type        = string
+  description = "Password for the VM user"
+}
+
+variable "ssh_pub_key" {
+  type        = string
+  description = "SSH public key"
+}
+
 variable "vm_config" {
   description = "Configuration for each K3s node"
   type = map(object({

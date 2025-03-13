@@ -1,0 +1,19 @@
+# Install Calico Operator
+apiVersion: operator.tigera.io/v1
+kind: Installation
+metadata:
+  name: default
+spec:
+  cni:
+    type: Calico
+  calicoNetwork:
+    bgp: Enabled
+
+---
+
+# Default Calico configuration
+apiVersion: operator.tigera.io/v1
+kind: APIServer
+metadata:
+  name: default
+spec: {}

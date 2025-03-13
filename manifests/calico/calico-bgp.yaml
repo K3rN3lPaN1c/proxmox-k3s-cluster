@@ -1,0 +1,41 @@
+# BGP Configuration for Calico
+apiVersion: projectcalico.org/v3
+kind: BGPConfiguration
+metadata:
+  name: default
+spec:
+  asNumber: 64513
+  nodeToNodeMeshEnabled: true
+  serviceClusterIPs:
+    - cidr: 10.43.0.0/16
+  serviceExternalIPs:
+    - cidr: 10.44.0.0/16
+  serviceLoadBalancerIPs:
+    - cidr: 10.45.0.0/16
+
+---
+
+# Calico IP Pool
+apiVersion: projectcalico.org/v3
+kind: IPPool
+metadata:
+  name: bgp-pods
+spec:
+  cidr: 10.42.0.0/16
+  natOutgoing: true
+  disabled: false
+  ipipMode: Never
+  vxlanMode: Never
+
+---
+
+# BGP Peer (OPNsense)
+apiVersion: projectcalico.org/v3
+kind: BGPPeer
+metadata:
+  name: opnsense-router
+spec:
+  peerIP: 10.0.20.1
+  asNumber: 64512
+  keepOriginalNextHop: true
+  maxRestartTime: 15m
